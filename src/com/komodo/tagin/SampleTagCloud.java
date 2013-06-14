@@ -11,7 +11,6 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Display;
-import android.view.MotionEvent;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -27,7 +26,8 @@ public class SampleTagCloud extends Activity {
 
 		// Step0: to get a full-screen View:
 		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+				WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		// Step1: get screen resolution:
 		Display display = getWindowManager().getDefaultDisplay();
@@ -42,9 +42,9 @@ public class SampleTagCloud extends Activity {
 
 		// Step3: create our TagCloudview and set it as the content of our
 		// MainActivity
-		mTagCloudView = new TagCloudView(this, width, height, myTagList); // passing
-																			// current
-																			// context
+		mTagCloudView = new TagCloudView(this, width, height, myTagList, 0, 0); // passing
+																				// current
+																				// context
 		setContentView(mTagCloudView);
 		mTagCloudView.requestFocus();
 		mTagCloudView.setFocusableInTouchMode(true);
@@ -113,17 +113,13 @@ public class SampleTagCloud extends Activity {
 		tempList.add(new Tag("Imdb", 2, "www.imdb.com"));
 		tempList.add(new Tag("Ask", 4, "www.ask.com"));
 		tempList.add(new Tag("Weibo", 1, "www.weibo.com"));
-		tempList.add(new Tag("Tagin!", 8, "http://scyp.idrc.ocad.ca/projects/tagin"));
+		tempList.add(new Tag("Tagin!", 8,
+				"http://scyp.idrc.ocad.ca/projects/tagin"));
 		tempList.add(new Tag("Shiftehfar", 8, "www.shiftehfar.org"));
 		tempList.add(new Tag("Soso", 5, "www.google.com"));
 		tempList.add(new Tag("XVideos", 3, "www.xvideos.com"));
 		tempList.add(new Tag("BBC", 5, "www.bbc.co.uk"));
 		return tempList;
-	}
-	
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		return mTagCloudView.onTouchEvent(event);
 	}
 
 	private TagCloudView mTagCloudView;
