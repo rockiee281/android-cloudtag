@@ -5,8 +5,6 @@ import java.util.List;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.widget.LinearLayout;
 
 public class MainActivity extends Activity {
@@ -24,29 +22,27 @@ public class MainActivity extends Activity {
 		mTagCloudView.requestFocus();
 		mTagCloudView.setFocusableInTouchMode(true);
 		container.addView(mTagCloudView);
-
 	}
+	
+	
 
-	public boolean dispatchTouchEvent(MotionEvent e) {
-
-		boolean result = mTagCloudView.dispatchTouchEvent(e);
-		// boolean result = true;
-		Log.d(TAG, getTime() + "super dispatching ... result is [" + result
-				+ "] action is [" + e.getAction() + "]");
-		return result;
-	}
+//	public boolean dispatchTouchEvent(MotionEvent e) {
+//
+//		boolean result = mTagCloudView.dispatchTouchEvent(e);
+//		// boolean result = true;
+//		Log.d(TAG, getTime() + "super dispatching ... result is [" + result + "] action is [" + e.getAction() + "]");
+//		return result;
+//	}
 
 	private String getTime() {
 
 		return "[" + System.currentTimeMillis() + "] ";
 	}
 
-	public boolean onTouchEvent(MotionEvent e) {
-		Log.d(TAG,
-				getTime() + "super movition:x=" + e.getX() + ",y=" + e.getY()
-						+ ",action is [" + e.getAction() + "]");
-		return mTagCloudView.onTouchEvent(e);
-	}
+//	public boolean onTouchEvent(MotionEvent e) {
+//		Log.d(TAG, getTime() + "super movition:x=" + e.getX() + ",y=" + e.getY() + ",action is [" + e.getAction() + "]");
+//		return mTagCloudView.onTouchEvent(e);
+//	}
 
 	private List<Tag> createTags() {
 		// create the list of tags with popularity values and related url
@@ -80,8 +76,7 @@ public class MainActivity extends Activity {
 		tempList.add(new Tag("Imdb", 2, "www.imdb.com"));
 		tempList.add(new Tag("Ask", 4, "www.ask.com"));
 		tempList.add(new Tag("Weibo", 1, "www.weibo.com"));
-		tempList.add(new Tag("Tagin!", 8,
-				"http://scyp.idrc.ocad.ca/projects/tagin"));
+		tempList.add(new Tag("Tagin!", 8, "http://scyp.idrc.ocad.ca/projects/tagin"));
 		tempList.add(new Tag("Shiftehfar", 8, "www.shiftehfar.org"));
 		tempList.add(new Tag("Soso", 5, "www.google.com"));
 		tempList.add(new Tag("XVideos", 3, "www.xvideos.com"));

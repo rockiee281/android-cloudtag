@@ -31,22 +31,19 @@ public class TagCloudView extends RelativeLayout {
 		super(mContext, attrSet);
 	}
 
-	public TagCloudView(Context mContext, int width, int height,
-			List<Tag> tagList, int offsetX, int offsetY) {
+	public TagCloudView(Context mContext, int width, int height, List<Tag> tagList, int offsetX, int offsetY) {
 		// text size
 		this(mContext, width, height, tagList, 6, 34, 1, offsetX, offsetY); // default
 																			// for
 																			// min/max
 	}
 
-	public TagCloudView(Context mContext, int width, int height,
-			List<Tag> tagList, int textSizeMin, int textSizeMax, int scrollSpeed) {
-		this(mContext, width, height, tagList, textSizeMin, textSizeMax,
-				scrollSpeed, 0, 0);
+	public TagCloudView(Context mContext, int width, int height, List<Tag> tagList, int textSizeMin, int textSizeMax,
+			int scrollSpeed) {
+		this(mContext, width, height, tagList, textSizeMin, textSizeMax, scrollSpeed, 0, 0);
 	}
 
-	public TagCloudView(Context mContext, int width, int height,
-			List<Tag> tagList, int textSizeMin, int textSizeMax,
+	public TagCloudView(Context mContext, int width, int height, List<Tag> tagList, int textSizeMin, int textSizeMax,
 			int scrollSpeed, int offsetX, int offsetY) {
 
 		super(mContext);
@@ -72,8 +69,7 @@ public class TagCloudView extends RelativeLayout {
 		// initialize the TagCloud from a list of tags
 		// Filter() func. screens tagList and ignores Tags with same text (Case
 		// Insensitive)
-		mTagCloud = new TagCloud(Filter(tagList), (int) radius, textSizeMin,
-				textSizeMax);
+		mTagCloud = new TagCloud(Filter(tagList), (int) radius, textSizeMin, textSizeMax);
 		float[] tempColor1 = { 0.9412f, 0.7686f, 0.2f, 1 }; // rgb Alpha
 		// {1f,0f,0f,1} red {0.3882f,0.21568f,0.0f,1} orange
 		// {0.9412f,0.7686f,0.2f,1} light orange
@@ -109,29 +105,19 @@ public class TagCloudView extends RelativeLayout {
 			mTextView.add(new TextView(this.mContext));
 			mTextView.get(i).setText(tempTag.getText());
 
-			mParams.add(new RelativeLayout.LayoutParams(
-					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+			mParams.add(new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 			mParams.get(i).addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 			mParams.get(i).addRule(RelativeLayout.ALIGN_PARENT_TOP);
-			mParams.get(i)
-					.setMargins(
-							(int) (centerX - shiftLeft + offsetX + tempTag
-									.getLoc2DX()),
-							(int) (centerY + offsetY + tempTag.getLoc2DY()), 0,
-							0);
+			mParams.get(i).setMargins((int) (centerX - shiftLeft + offsetX + tempTag.getLoc2DX()),
+					(int) (centerY + offsetY + tempTag.getLoc2DY()), 0, 0);
 			mTextView.get(i).setLayoutParams(mParams.get(i));
-
 			mTextView.get(i).setSingleLine(true);
-			int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255),
-					(int) (tempTag.getColorR() * 255),
-					(int) (tempTag.getColorG() * 255),
-					(int) (tempTag.getColorB() * 255));
+			int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255), (int) (tempTag.getColorR() * 255),
+					(int) (tempTag.getColorG() * 255), (int) (tempTag.getColorB() * 255));
 			mTextView.get(i).setTextColor(mergedColor);
-			mTextView.get(i).setTextSize(
-					(int) (tempTag.getTextSize() * tempTag.getScale()));
+			mTextView.get(i).setTextSize((int) (tempTag.getTextSize() * tempTag.getScale()));
 			addView(mTextView.get(i));
-			mTextView.get(i).setOnClickListener(
-					OnTagClickListener(tempTag.getUrl()));
+			mTextView.get(i).setOnClickListener(OnTagClickListener(tempTag.getUrl()));
 			i++;
 		}
 	}
@@ -150,26 +136,20 @@ public class TagCloudView extends RelativeLayout {
 		mTextView.add(new TextView(this.mContext));
 		mTextView.get(i).setText(newTag.getText());
 
-		mParams.add(new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT));
+		mParams.add(new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		mParams.get(i).addRule(RelativeLayout.ALIGN_PARENT_LEFT);
 		mParams.get(i).addRule(RelativeLayout.ALIGN_PARENT_TOP);
-		mParams.get(i).setMargins(
-				(int) (centerX - shiftLeft + offsetX + newTag.getLoc2DX()),
+		mParams.get(i).setMargins((int) (centerX - shiftLeft + offsetX + newTag.getLoc2DX()),
 				(int) (centerY + offsetY + newTag.getLoc2DY()), 0, 0);
 		mTextView.get(i).setLayoutParams(mParams.get(i));
 
 		mTextView.get(i).setSingleLine(true);
-		int mergedColor = Color.argb((int) (newTag.getAlpha() * 255),
-				(int) (newTag.getColorR() * 255),
-				(int) (newTag.getColorG() * 255),
-				(int) (newTag.getColorB() * 255));
+		int mergedColor = Color.argb((int) (newTag.getAlpha() * 255), (int) (newTag.getColorR() * 255),
+				(int) (newTag.getColorG() * 255), (int) (newTag.getColorB() * 255));
 		mTextView.get(i).setTextColor(mergedColor);
-		mTextView.get(i).setTextSize(
-				(int) (newTag.getTextSize() * newTag.getScale()));
+		mTextView.get(i).setTextSize((int) (newTag.getTextSize() * newTag.getScale()));
 		addView(mTextView.get(i));
-		mTextView.get(i)
-				.setOnClickListener(OnTagClickListener(newTag.getUrl()));
+		mTextView.get(i).setOnClickListener(OnTagClickListener(newTag.getUrl()));
 
 		mTextView.get(i).setOnTouchListener(new OnTouchListener() {
 
@@ -177,8 +157,7 @@ public class TagCloudView extends RelativeLayout {
 			public boolean onTouch(View v, MotionEvent e) {
 				float x = e.getX();
 				float y = e.getY();
-				Log.d(TAG, "tv movition:x=" + x + ",y=" + y + ",action is ["
-						+ e.getAction() + "]");
+				Log.d(TAG, "tv movition:x=" + x + ",y=" + y + ",action is [" + e.getAction() + "]");
 				return false;
 			}
 		});
@@ -192,16 +171,12 @@ public class TagCloudView extends RelativeLayout {
 			Tag tempTag;
 			while (it.hasNext()) {
 				tempTag = (Tag) it.next();
-				mParams.get(tempTag.getParamNo()).setMargins(
-						(int) (centerX - shiftLeft + tempTag.getLoc2DX()),
+				mParams.get(tempTag.getParamNo()).setMargins((int) (centerX - shiftLeft + tempTag.getLoc2DX()),
 						(int) (centerY + tempTag.getLoc2DY()), 0, 0);
 				mTextView.get(tempTag.getParamNo()).setText(tempTag.getText());
-				mTextView.get(tempTag.getParamNo()).setTextSize(
-						(int) (tempTag.getTextSize() * tempTag.getScale()));
-				int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255),
-						(int) (tempTag.getColorR() * 255),
-						(int) (tempTag.getColorG() * 255),
-						(int) (tempTag.getColorB() * 255));
+				mTextView.get(tempTag.getParamNo()).setTextSize((int) (tempTag.getTextSize() * tempTag.getScale()));
+				int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255), (int) (tempTag.getColorR() * 255),
+						(int) (tempTag.getColorG() * 255), (int) (tempTag.getColorB() * 255));
 				mTextView.get(tempTag.getParamNo()).setTextColor(mergedColor);
 				mTextView.get(tempTag.getParamNo()).bringToFront();
 			}
@@ -217,15 +192,11 @@ public class TagCloudView extends RelativeLayout {
 		Tag tempTag;
 		while (it.hasNext()) {
 			tempTag = (Tag) it.next();
-			mParams.get(tempTag.getParamNo()).setMargins(
-					(int) (centerX - shiftLeft + tempTag.getLoc2DX()),
+			mParams.get(tempTag.getParamNo()).setMargins((int) (centerX - shiftLeft + tempTag.getLoc2DX()),
 					(int) (centerY + tempTag.getLoc2DY()), 0, 0);
-			mTextView.get(tempTag.getParamNo()).setTextSize(
-					(int) (tempTag.getTextSize() * tempTag.getScale()));
-			int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255),
-					(int) (tempTag.getColorR() * 255),
-					(int) (tempTag.getColorG() * 255),
-					(int) (tempTag.getColorB() * 255));
+			mTextView.get(tempTag.getParamNo()).setTextSize((int) (tempTag.getTextSize() * tempTag.getScale()));
+			int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255), (int) (tempTag.getColorR() * 255),
+					(int) (tempTag.getColorG() * 255), (int) (tempTag.getColorB() * 255));
 			mTextView.get(tempTag.getParamNo()).setTextColor(mergedColor);
 			mTextView.get(tempTag.getParamNo()).bringToFront();
 		}
@@ -247,15 +218,11 @@ public class TagCloudView extends RelativeLayout {
 		Tag tempTag;
 		while (it.hasNext()) {
 			tempTag = (Tag) it.next();
-			mParams.get(tempTag.getParamNo()).setMargins(
-					(int) (centerX - shiftLeft + tempTag.getLoc2DX()),
+			mParams.get(tempTag.getParamNo()).setMargins((int) (centerX - shiftLeft + tempTag.getLoc2DX()),
 					(int) (centerY + tempTag.getLoc2DY()), 0, 0);
-			mTextView.get(tempTag.getParamNo()).setTextSize(
-					(int) (tempTag.getTextSize() * tempTag.getScale()));
-			int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255),
-					(int) (tempTag.getColorR() * 255),
-					(int) (tempTag.getColorG() * 255),
-					(int) (tempTag.getColorB() * 255));
+			mTextView.get(tempTag.getParamNo()).setTextSize((int) (tempTag.getTextSize() * tempTag.getScale()));
+			int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255), (int) (tempTag.getColorR() * 255),
+					(int) (tempTag.getColorG() * 255), (int) (tempTag.getColorB() * 255));
 			mTextView.get(tempTag.getParamNo()).setTextColor(mergedColor);
 			mTextView.get(tempTag.getParamNo()).bringToFront();
 		}
@@ -268,8 +235,7 @@ public class TagCloudView extends RelativeLayout {
 		float y = e.getY();
 		boolean result = true;
 		if (e.getAction() == MotionEvent.ACTION_MOVE) {
-			Log.d(TAG, getTime() + "child movition:x=" + x + ",y=" + y
-					+ ",action is [" + e.getAction() + "]");
+			Log.d(TAG, getTime() + "child movition:x=" + x + ",y=" + y + ",action is [" + e.getAction() + "]");
 			onTouchEvent(e);
 		} else {
 			oldX = x;
@@ -277,8 +243,7 @@ public class TagCloudView extends RelativeLayout {
 		}
 
 		result = super.dispatchTouchEvent(e);
-		Log.d(TAG, getTime() + "child dispatching ,action is :" + e.getAction()
-				+ " result is :" + result);
+		Log.d(TAG, getTime() + "child dispatching ,action is :" + e.getAction() + " result is :" + result);
 		return result;
 	}
 
@@ -314,15 +279,11 @@ public class TagCloudView extends RelativeLayout {
 			Tag tempTag;
 			while (it.hasNext()) {
 				tempTag = (Tag) it.next();
-				mParams.get(tempTag.getParamNo()).setMargins(
-						(int) (centerX - shiftLeft + tempTag.getLoc2DX()),
+				mParams.get(tempTag.getParamNo()).setMargins((int) (centerX - shiftLeft + tempTag.getLoc2DX()),
 						(int) (centerY + tempTag.getLoc2DY()), 0, 0);
-				mTextView.get(tempTag.getParamNo()).setTextSize(
-						(int) (tempTag.getTextSize() * tempTag.getScale()));
-				int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255),
-						(int) (tempTag.getColorR() * 255),
-						(int) (tempTag.getColorG() * 255),
-						(int) (tempTag.getColorB() * 255));
+				mTextView.get(tempTag.getParamNo()).setTextSize((int) (tempTag.getTextSize() * tempTag.getScale()));
+				int mergedColor = Color.argb((int) (tempTag.getAlpha() * 255), (int) (tempTag.getColorR() * 255),
+						(int) (tempTag.getColorG() * 255), (int) (tempTag.getColorB() * 255));
 				mTextView.get(tempTag.getParamNo()).setTextColor(mergedColor);
 				mTextView.get(tempTag.getParamNo()).bringToFront();
 			}
@@ -333,9 +294,8 @@ public class TagCloudView extends RelativeLayout {
 		 * dy = y - centerY; break;
 		 */
 		}
-		
-		Log.d(TAG, getTime() + "child movition2:x=" + x + ",y=" + y
-				+ ",action is [" + e.getAction() + "]");
+
+		Log.d(TAG, getTime() + "child movition2:x=" + x + ",y=" + y + ",action is [" + e.getAction() + "]");
 		return true;
 		// return super.onTouchEvent(e);
 	}
@@ -346,8 +306,7 @@ public class TagCloudView extends RelativeLayout {
 	// };
 
 	String urlMaker(String url) {
-		if ((url.substring(0, 7).equalsIgnoreCase("http://"))
-				|| (url.substring(0, 8).equalsIgnoreCase("https://")))
+		if ((url.substring(0, 7).equalsIgnoreCase("http://")) || (url.substring(0, 8).equalsIgnoreCase("https://")))
 			return url;
 		else
 			return "http://" + url;
